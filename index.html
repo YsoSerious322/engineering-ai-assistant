@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Student AI Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ Engineering AI Assistant</h1>
+            <p class="subtitle">Advanced AI-powered assistant for engineering students | Text & Image Analysis</p>
+        </header>
+
+        <div class="chat-container" id="chatContainer">
+            <div class="welcome-message">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p><strong>Welcome to Engineering AI Assistant</strong></p>
+                        <p>I'm an advanced AI assistant designed to support engineering students with comprehensive academic and technical guidance.</p>
+                        <p><strong>Capabilities:</strong></p>
+                        <ul>
+                            <li>Engineering concepts and problem-solving</li>
+                            <li>Image analysis (diagrams, circuits, equations, graphs)</li>
+                            <li>Academic guidance and study strategies</li>
+                            <li>Technical documentation review</li>
+                            <li>Code analysis and debugging support</li>
+                        </ul>
+                        <p>Type your question or upload an image to get started.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-container">
+            <div class="api-status" id="apiStatus">
+                <span class="status-indicator"></span>
+                <span id="statusText">Configure API Key</span>
+            </div>
+            <div class="image-preview" id="imagePreview" style="display: none;">
+                <div class="preview-header">
+                    <span>Selected Image:</span>
+                    <button class="remove-image-btn" id="removeImageBtn">✕</button>
+                </div>
+                <img id="previewImage" alt="Selected image">
+            </div>
+            <div class="input-wrapper">
+                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                <button class="image-upload-btn" id="imageUploadBtn" title="Upload Image" disabled>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 16L16 16M4 16L4 12M16 16L16 12M10 12L10 4M10 4L7 7M10 4L13 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <textarea 
+                    id="userInput" 
+                    placeholder="Type your message or upload an image for analysis..." 
+                    rows="1"
+                    disabled
+                ></textarea>
+                <button id="sendBtn" disabled>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M2 10L18 2L10 18L8 11L2 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <button class="settings-btn" id="settingsBtn">⚙️ Settings</button>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h3>API Configuration</h3>
+                    <p class="help-text">Choose your preferred AI provider and enter your API key.</p>
+                    
+                    <div class="form-group">
+                        <label for="apiProvider">API Provider</label>
+                        <select id="apiProvider">
+                            <option value="openai">OpenAI (GPT-4 Vision)</option>
+                            <option value="anthropic">Anthropic (Claude 3 Sonnet)</option>
+                            <option value="gemini">Google Gemini Pro Vision</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apiModel">Model (Optional)</label>
+                        <select id="apiModel">
+                            <option value="auto">Auto (Recommended)</option>
+                            <option value="gpt-4-vision-preview">GPT-4 Vision (OpenAI)</option>
+                            <option value="gpt-4o">GPT-4o (OpenAI)</option>
+                            <option value="claude-3-sonnet-20240229">Claude 3 Sonnet (Anthropic)</option>
+                            <option value="claude-3-opus-20240229">Claude 3 Opus (Anthropic)</option>
+                            <option value="gemini-pro-vision">Gemini Pro Vision (Google)</option>
+                        </select>
+                        <small>Auto mode selects the best model for your provider</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apiKey">API Key</label>
+                        <input 
+                            type="password" 
+                            id="apiKey" 
+                            placeholder="Enter your API key"
+                        >
+                        <small>Your API key is stored locally in your browser and never sent anywhere except the API provider.</small>
+                    </div>
+
+                    <div class="api-links">
+                        <p><strong>Get your API key:</strong></p>
+                        <ul>
+                            <li><a href="https://platform.openai.com/api-keys" target="_blank">OpenAI API Keys</a></li>
+                            <li><a href="https://console.anthropic.com/settings/keys" target="_blank">Anthropic API Keys</a></li>
+                            <li><a href="https://makersuite.google.com/app/apikey" target="_blank">Google Gemini API Keys</a></li>
+                        </ul>
+                    </div>
+
+                    <button class="save-btn" id="saveSettings">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
