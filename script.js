@@ -381,7 +381,11 @@ async function getAnthropicResponse(message, imageBase64 = null) {
 
 // Google Gemini API with Vision
 async function getGeminiResponse(message, imageBase64 = null) {
-    const model = imageBase64 ? 'gemini-1.5-flash' : 'gemini-pro';
+    // Use latest models - 1.5 Flash for images, 1.5 Pro for text
+    let model = config.apiModel;
+    if (model === 'auto') {
+        model = imageBase64 ? 'gemini-1.5-flash' : 'gemini-1.5-pro';
+    }
     
     const contents = [];
     
